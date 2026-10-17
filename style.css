@@ -1,0 +1,124 @@
+:root {
+    --primary-color: #1a2a3a;
+    --gold-color: #c5a059;
+    --bg-color: #f4f6f9;
+    --text-color: #2b2b2b;
+    --card-bg: #ffffff;
+    --border-color: #e2e8f0;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+.main-header {
+    background: linear-gradient(135deg, #0d1b2a 0%, #1a2a3a 100%);
+    color: #fff;
+    text-align: center;
+    padding: 2.5rem 1rem;
+    border-bottom: 4px solid var(--gold-color);
+}
+
+.logo-container .scale-icon {
+    font-size: 3.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.brand-name {
+    font-family: 'Cinzel', serif;
+    font-size: 2.8rem;
+    letter-spacing: 4px;
+    color: var(--gold-color);
+}
+
+.container {
+    max-width: 850px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.form-card, .result-card {
+    background: var(--card-bg);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    border: 1px solid var(--border-color);
+    margin-bottom: 2rem;
+}
+
+.form-group { margin-bottom: 1.2rem; }
+
+label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+    color: var(--primary-color);
+}
+
+input, textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.btn-submit {
+    width: 100%;
+    background-color: var(--primary-color);
+    color: var(--gold-color);
+    border: 2px solid var(--gold-color);
+    padding: 0.9rem;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.btn-submit:hover {
+    background-color: var(--gold-color);
+    color: var(--primary-color);
+}
+
+.hidden { display: none; }
+
+.gold-divider {
+    border: 0;
+    height: 1px;
+    background: var(--gold-color);
+    margin: 1rem 0 1.5rem 0;
+}
+
+.result-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btn-print {
+    background: var(--gold-color);
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.report-body {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    white-space: pre-wrap;
+}
+
+.main-footer { text-align: center; padding: 1.5rem; color: #777; }
+
+@media print {
+    .main-header, .form-card, .btn-print, .main-footer { display: none; }
+    .result-card { border: none; box-shadow: none; }
+}
