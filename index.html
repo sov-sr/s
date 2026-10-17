@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="tr" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASAF - Akıllı Otomatik Dilekçe Oluşturucu</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="logo-container">
+            <div class="scale-icon">⚖️</div>
+            <h1 class="brand-name">ASAF</h1>
+            <p class="brand-sub">Belge Analizi ve Otomatik Dilekçe Oluşturucu</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="form-card">
+            <h2><i class="fa-solid fa-file-pdf"></i> Belge Yükle ve Dilekçe Oluştur</h2>
+            <form id="dilekceForm">
+                <div class="form-group">
+                    <label for="apiKey">API Anahtarı (Gemini API Key):</label>
+                    <input type="password" id="apiKey" placeholder="Gemini API Anahtarınızı girin" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="fileInput">Dava Dosyası / Karar / Belge Yükleyin (Görsel veya PDF):</label>
+                    <input type="file" id="fileInput" accept="image/*,application/pdf" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="extraNotes">Ek Notlar / Özel İstekleriniz (İsteğe Bağlı):</label>
+                    <textarea id="extraNotes" rows="3" placeholder="Mahkemeden özel bir talebiniz varsa veya eklemek istediğiniz detaylar..." ></textarea>
+                </div>
+
+                <button type="submit" id="submitBtn" class="btn-submit">
+                    <i class="fa-solid fa-gavel"></i> Belgeyi Analiz Et ve Dilekçe Yaz
+                </button>
+            </form>
+        </section>
+
+        <!-- النتيجة -->
+        <section id="resultSection" class="result-card hidden">
+            <div class="result-header">
+                <div class="header-seal">⚖️ ASAF HUKUK DİLEKÇESİ</div>
+                <h3>Oluşturulan Resmi Dilekçe</h3>
+                <button onclick="window.print()" class="btn-print"><i class="fa-solid fa-print"></i> Yazdır / PDF Kaydet</button>
+            </div>
+            <hr class="gold-divider">
+            <div id="reportOutput" class="report-body"></div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <p><strong>ASAF</strong> Hukuki Analiz ve Dilekçe Platformu &copy; 2026</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
