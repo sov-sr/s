@@ -1,3 +1,13 @@
+document.addEventListener('DOMContentLoaded', () => {
+    const apiKeyInput = document.getElementById('apiKey');
+    
+    // استرجاع المفتاح المحفوظ تلقائياً من المتصفح
+    const savedKey = localStorage.getItem('asaf_gemini_key');
+    if (savedKey) {
+        apiKeyInput.value = savedKey;
+    }
+});
+
 document.getElementById('dilekceForm').addEventListener('submit', async function(e) {
     e.preventDefault();
 
@@ -9,16 +19,23 @@ document.getElementById('dilekceForm').addEventListener('submit', async function
     const resultSection = document.getElementById('resultSection');
     const reportOutput = document.getElementById('reportOutput');
 
+    if (!apiKey) {
+        alert('Lütfen geçerli bir API anahtarı girin.');
+        return;
+    }
+
     if (!fileInput) {
         alert('Lütfen bir belge veya görsel yükleyin.');
         return;
     }
 
+    // حفظ المفتاح في المتصفح لاستخدامه مستقبلاً
+    localStorage.setItem('asaf_gemini_key', apiKey);
+
     submitBtn.disabled = true;
     submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Belge Analiz Ediliyor ve Dilekçe Yazılıyor...';
 
     try {
-        // تحويل الملف إلى Base64
         const base64Data = await convertFileToBase64(fileInput);
         const mimeType = fileInput.type;
 
@@ -37,7 +54,8 @@ Dilekçe şu formatta olmalıdır:
 6. HUKUKİ NEDENLER VE DELİLLER
 7. SONUÇ VE İSTEM`;
 
-        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
+        // استخدام gemini-2.5-flash بدلاً من gemini-1.5-flash
+        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -64,7 +82,7 @@ Dilekçe şu formatta olmalıdır:
         } else {
             console.error('API Error:', data);
             const err = data.error ? data.error.message : 'Bilinmeyen bir hata oluştu.';
-            alert('Hata oluşتا: ' + err);
+            alert('Hata oluştu: ' + err);
         }
     } catch (error) {
         console.error('Error:', error);
